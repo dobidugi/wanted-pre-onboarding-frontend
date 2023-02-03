@@ -14,7 +14,7 @@ function Input(props: InputProps & BaseProps) {
             css={style}
             {...props}
             className={props?.className}
-            data-testid={props?.className}
+            data-testid={props?.testId}
         />
     )
 }
@@ -24,7 +24,7 @@ const style = css`
     padding: 1rem;
     border-radius: 4px;
     border: 1px solid var(--grey-200);
-
+    
     &:focus {
         border: 1px solid var(--green-200);
     }
