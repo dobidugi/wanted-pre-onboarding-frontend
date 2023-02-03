@@ -4,6 +4,10 @@ import Button from '../../components/common/Button';
 import LabelInput from '../../components/common/LabelInput';
 import SignSubmitButtonStyle from '../../style/SignSubmitButtonStyle';
 
+/**
+ * 로그인 입력 폼 컴포넌트
+ * @returns 
+ */
 function InputForm() {
     return (
         <form
