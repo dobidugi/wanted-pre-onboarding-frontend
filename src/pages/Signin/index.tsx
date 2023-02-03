@@ -1,4 +1,8 @@
+
 import React from 'react'
+import GreyBackgroundWrapper from '../../components/common/GreyBackgroundWrapper'
+import SignWrapper from '../../components/common/SignWrapper'
+import InputForm from './InputForm'
 
 /**
  * /signin
@@ -7,7 +11,18 @@ import React from 'react'
  */
 function index() {
     return (
-        <div>로그인페이지</div>
+        <main>
+            <GreyBackgroundWrapper
+                className='wrapper-center'
+            >
+                <SignWrapper
+                    type="로그인"
+                >
+                    <InputForm />
+                </SignWrapper>
+            </GreyBackgroundWrapper>
+        </main>
+
     )
 }
 
