@@ -16,7 +16,7 @@ function InputForm() {
             <LabelInput
                 label="이메일"
                 input={{
-                    type: "email",
+                    type: "text",
                     name: "email",
                     testId: "email-input"
                 }}

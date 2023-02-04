@@ -26,7 +26,7 @@ function InputForm() {
             {
                 label: "이메일",
                 input: {
-                    type: "email",
+                    type: "text",
                     name: "email",
                     testId: "email-input",
                     value: values.email,
@@ -85,7 +85,7 @@ function InputForm() {
 
 const style = css`
     width: 100%;
-    
+
 `;
 
 export default InputForm;
