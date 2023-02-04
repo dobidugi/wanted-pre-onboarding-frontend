@@ -23,6 +23,7 @@ function InputForm() {
                     name: "email",
                     testId: "email-input",
                     value: values.email,
+                    placeholder: "이메일을 입력하세요",
                     onChange: onChange,
                 },
                 error: errors.email
@@ -33,6 +34,7 @@ function InputForm() {
                     type: "password",
                     name: "password",
                     testId: "password-input",
+                    placeholder: "비밀번호를 입력하세요",
                     value: values.password,
                     onChange: onChange,
                 },
