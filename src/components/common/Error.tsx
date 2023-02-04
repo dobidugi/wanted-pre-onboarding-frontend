@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import React from 'react'
+import BaseProps from '../../types/BaseProps';
 
 
 /**
@@ -7,9 +8,10 @@ import React from 'react'
  * @param props.children - 에러 메시지 
  * @returns 
  */
-function Error(props: { value?: string }) {
+function Error(props: { value?: string } & BaseProps) {
     return (
         <p
+            className={props?.className}
             css={css`
                 color: red;
                 font-size: 0.85rem;
