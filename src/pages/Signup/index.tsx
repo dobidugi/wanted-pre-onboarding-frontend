@@ -9,6 +9,9 @@ import User from "../../types/User";
 import signupRequest from '../../utils/apis/Signup/signupRequest';
 import { useNavigate } from "react-router-dom";
 import ContentResponsiveStyle from '../../style/ContentResponsiveStyle';
+import Error from "../../components/common/Error";
+import ErrorResponse from '../../types/ErrorResponse';
+import { css } from "@emotion/react";
 
 /**
  * /signup
@@ -17,6 +20,7 @@ import ContentResponsiveStyle from '../../style/ContentResponsiveStyle';
  */
 function Index() {
     const navigator = useNavigate();
+    const [error, setError] = useState<string>('');
     const { values, errors, onChange } = useValid<User>({
         values: {
             email: '',
@@ -32,6 +36,10 @@ function Index() {
             .then((response) => {
                 navigator('/signin');
             })
+            .catch(({ response }) => {
+                const { data }: { data: ErrorResponse } = response;
+                setError(data.message);
+            })
     }, [navigator, values]);
 
     return (
@@ -46,6 +54,12 @@ function Index() {
                         type="회원가입"
                     >
                         <InputForm />
+                        <Error
+                            css={css`
+                                margin-top: 1rem;
+                            `}
+                            value={error}
+                        />
                     </SignWrapper>
                 </main>
             </GreyBackgroundWrapper>
