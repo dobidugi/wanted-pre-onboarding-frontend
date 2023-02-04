@@ -18,11 +18,12 @@ function useValid<T>(props: {
             [name]: value,
         });
         props.validator({
+            errors,
             name,
             value,
             setError: setErros,
         });
-    }, [props, values]);
+    }, [errors, props, values]);
 
     return {
         values,

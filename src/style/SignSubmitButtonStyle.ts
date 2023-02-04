@@ -15,5 +15,11 @@ const SignSubmitButtonStyle = css`
     &:hover {
         background-color: var(--green-300);
     }
+
+    &:disabled {
+        color: var(--grey-300);
+        background-color: var(--grey-200);
+        cursor: not-allowed;
+    }
 `
 export default SignSubmitButtonStyle;
