@@ -10,9 +10,10 @@ import TodoContext from '../../store/TodoContext';
  */
 function NewTodoForm() {
     const { newTodo } = useContext(TodoContext);
-    const { value, onChange } = newTodo;
+    const { value, onChange, onSubmit } = newTodo;
     return (
         <form
+            onSubmit={onSubmit}
             css={style}
         >
             <Input

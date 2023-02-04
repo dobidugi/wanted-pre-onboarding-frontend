@@ -3,6 +3,8 @@ import React, { useCallback, useState } from 'react'
 import GreyBackgroundWrapper from '../../components/common/GreyBackgroundWrapper';
 import TodoContext from '../../store/TodoContext';
 import NewTodoForm from './NewTodoForm';
+import createTodo from '../../utils/apis/Todo/createTodo';
+import Todo from '../../types/Todo';
 
 /**
  * /todo
@@ -11,15 +13,19 @@ import NewTodoForm from './NewTodoForm';
  */
 function Index() {
     const [newTodo, setNewTodo] = useState<string>("");
-
+    const [todoList, setTodoList] = useState<Todo[]>([]);
     const onChangeNewTodo = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setNewTodo(e.target.value);
     }, []);
 
     const addTodoHandler = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-    }, []);
+        createTodo(newTodo)
+            .then((todo) => {
+                setTodoList([...todoList, todo]);
+                setNewTodo("");
+            })
+    }, [newTodo, todoList]);
 
 
     return (
