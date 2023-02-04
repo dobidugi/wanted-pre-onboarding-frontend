@@ -23,7 +23,10 @@ function TodoItem(props: Todo) {
                     defaultChecked={props.isCompleted}
                     onClick={() => onClickCheckBox(props.id)}
                 />
-                <span>{props.todo}</span>
+                <span
+                    className={`${props.isCompleted ? "checked" : ""}`}>
+                    {props.todo}
+                </span>
             </label>
             <Button
                 type="button"
@@ -58,6 +61,10 @@ const style = css`
         span {
             font-size: 1rem;
             margin-left: 0.5rem;
+        }
+        
+        span.checked {
+            text-decoration: line-through;
         }
 
         input {
