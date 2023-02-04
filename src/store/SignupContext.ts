@@ -9,6 +9,10 @@ export const SignupContext = React.createContext<SignupContextProps>({
         email: '',
         password: ''
     },
+    errors: {
+        email: '',
+        password: ''
+    },
     onChange: () => {},
     onSubmit: () => {}
 });

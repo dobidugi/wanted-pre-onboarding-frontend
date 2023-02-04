@@ -9,6 +9,7 @@ import User from './User';
  */
 interface SignupContextProps {
     values: User;
+    errors: { [key in string]: string}
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
