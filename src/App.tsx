@@ -27,7 +27,7 @@ function App() {
 }
 
 const style = css`
-    width: 100vw;
+    width: 100%;
     min-height: 100%;
 
     .wrapper-center {
