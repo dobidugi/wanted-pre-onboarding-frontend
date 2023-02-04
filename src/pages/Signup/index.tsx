@@ -2,8 +2,10 @@ import React, { useCallback, useState } from "react";
 import GreyBackgroundWrapper from "../../components/common/GreyBackgroundWrapper";
 import SignWrapper from "../../components/common/SignWrapper";
 import InputForm from "./InputForm";
-import User from "../../types/User";
 import { SignupContext } from "../../store/SignupContext";
+import useValid from "../../hooks/useValid";
+import UserValidator from "../../utils/validator/UserValidator";
+import User from "../../types/User";
 
 /**
  * /signup
@@ -11,18 +13,16 @@ import { SignupContext } from "../../store/SignupContext";
  * @returns 
  */
 function Index() {
-    const [values, setValues] = useState<User>({
-        email: '',
-        password: '',
-    });
+    const { values, errors, onChange } = useValid<User>({
+        values: {
+            email: '',
+            password: '',
+        },
+        validator: UserValidator
+    })
+    // const [values, setValues] = useState<User>();
 
-    const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setValues({
-            ...values,
-            [name]: value,
-        });
-    }, [values]);
+
 
     const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -31,7 +31,7 @@ function Index() {
 
     return (
         <main>
-            <SignupContext.Provider value={{ values, onChange, onSubmit }}>
+            <SignupContext.Provider value={{ values, onChange, onSubmit, errors }}>
                 <GreyBackgroundWrapper
                     className='wrapper-center'
                 >
