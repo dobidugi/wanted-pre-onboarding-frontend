@@ -7,8 +7,123 @@ https://github.com/walking-sunset/selection-task
 ## 프로젝트 실행 방법
 
 ```
+gitclone https://github.com/dobidugi/wanted-pre-onboarding-frontend
 npm install 
 npm start
+```
+
+## 배포 
+
+https://brilliant-kheer-4c78a3.netlify.app/
+
+
+## 시연 영상
+
+https://user-images.githubusercontent.com/21123166/216772534-639963ea-da03-4aec-b737-997263924b45.mp4
+
+
+
+## 사용한 라이브러리
+
+Typescript
+react-router-dom
+axios
+craco
+emotion
+
+## 구현 내용
+
+- TypeScript를 사용하여 구현하였습니다.
+
+- 서버에 요청을 전송하였을때 실패하게된다면 에러 메세지를 출력하도록 구현하였습니다.
+
+- 브라우저의 너비에따라 레이아웃이 변경되는 반응형 웹사이트입니다.
+
+  -  ( min-width : 768px ) , ( max-width : 767px )
+
+## 프로젝트 구조도
+```
+
+
+📦wanted-pre-onboarding-frontend
+ ┣ 📂public
+ ┃ ┣ 📜_redirects
+ ┃ ┣ 📜favicon.ico
+ ┃ ┣ 📜index.html
+ ┃ ┣ 📜logo192.png
+ ┃ ┣ 📜logo512.png
+ ┃ ┣ 📜manifest.json
+ ┃ ┗ 📜robots.txt
+ ┣ 📂src
+ ┃ ┣ 📂components # 컴포넌트 모음 
+ ┃ ┃ ┣ 📂common # 여러곳에서 사용되는 컴포넌트
+ ┃ ┃ ┃ ┣ 📜Button.tsx
+ ┃ ┃ ┃ ┣ 📜Error.tsx
+ ┃ ┃ ┃ ┣ 📜GreyBackgroundWrapper.tsx
+ ┃ ┃ ┃ ┣ 📜Input.tsx
+ ┃ ┃ ┃ ┣ 📜LabelInput.tsx
+ ┃ ┃ ┃ ┗ 📜SignWrapper.tsx
+ ┃ ┃ ┗ 📂permission
+ ┃ ┃ ┃ ┣ 📜GuestRoute.tsx # 비 로그인 유저만 접속할 수 있는 페이지를 만들어주는 컴포넌트 
+ ┃ ┃ ┃ ┗ 📜PrivateRoute.tsx # 로그인 유저만 접속할 수 있는 페이지를 만들어주는 컴포넌트 
+ ┃ ┣ 📂hooks # custom hooks
+ ┃ ┃ ┗ 📜useValid.tsx
+ ┃ ┣ 📂pages # pages 
+ ┃ ┃ ┣ 📂Signin # /signin
+ ┃ ┃ ┃ ┣ 📜InputForm.tsx
+ ┃ ┃ ┃ ┗ 📜index.tsx
+ ┃ ┃ ┣ 📂Signup # /signup
+ ┃ ┃ ┃ ┣ 📜InputForm.tsx
+ ┃ ┃ ┃ ┗ 📜index.tsx
+ ┃ ┃ ┗ 📂todo # /todo
+ ┃ ┃ ┃ ┣ 📜NewTodoForm.tsx
+ ┃ ┃ ┃ ┣ 📜TodoItem.tsx
+ ┃ ┃ ┃ ┣ 📜TodoList.tsx
+ ┃ ┃ ┃ ┗ 📜index.tsx
+ ┃ ┣ 📂store # ContextAPI
+ ┃ ┃ ┣ 📜SigninContex.ts
+ ┃ ┃ ┣ 📜SignupContext.ts
+ ┃ ┃ ┗ 📜TodoContext.ts
+ ┃ ┣ 📂style # CSS
+ ┃ ┃ ┣ 📜ContentResponsiveStyle.ts
+ ┃ ┃ ┣ 📜GlobalStyle.tsx
+ ┃ ┃ ┗ 📜SignSubmitButtonStyle.ts
+ ┃ ┣ 📂types # DTO
+ ┃ ┃ ┣ 📜BaseProps.ts
+ ┃ ┃ ┣ 📜ErrorResponse.ts
+ ┃ ┃ ┣ 📜InputProps.ts
+ ┃ ┃ ┣ 📜InputType.ts
+ ┃ ┃ ┣ 📜SigninContextProps.ts
+ ┃ ┃ ┣ 📜SignupContextProps.ts
+ ┃ ┃ ┣ 📜Todo.ts
+ ┃ ┃ ┣ 📜TodoContextProps.ts
+ ┃ ┃ ┗ 📜User.ts
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📂apis # apis 
+ ┃ ┃ ┃ ┣ 📂Signin
+ ┃ ┃ ┃ ┃ ┗ 📜signinRequest.ts
+ ┃ ┃ ┃ ┣ 📂Signup
+ ┃ ┃ ┃ ┃ ┗ 📜signupRequest.ts
+ ┃ ┃ ┃ ┗ 📂Todo
+ ┃ ┃ ┃ ┃ ┣ 📜createTodo.ts
+ ┃ ┃ ┃ ┃ ┣ 📜deleteTodo.ts
+ ┃ ┃ ┃ ┃ ┣ 📜fetchTodos.ts
+ ┃ ┃ ┃ ┃ ┗ 📜updateTodo.ts
+ ┃ ┃ ┣ 📂validator # 검증 객체
+ ┃ ┃ ┃ ┗ 📜UserValidator.ts
+ ┃ ┃ ┗ 📜customAxios.ts
+ ┃ ┣ 📜App.test.tsx
+ ┃ ┣ 📜App.tsx
+ ┃ ┣ 📜index.tsx
+ ┃ ┣ 📜react-app-env.d.ts
+ ┃ ┣ 📜reportWebVitals.ts
+ ┃ ┗ 📜setupTests.ts
+ ┣ 📜.gitignore
+ ┣ 📜README.md
+ ┣ 📜craco.config.js
+ ┣ 📜package-lock.json
+ ┣ 📜package.json
+ ┗ 📜tsconfig.json
 ```
 
 ## 과제
@@ -155,5 +270,172 @@ npm start
     <button data-testid="cancel-button">취소</button>
     ```
 
+
+</details>
+
+## API
+
+<details>
+
+<summary>API 자세히 보기</summary>
+- API 주소: [https://pre-onboarding-selection-task.shop/](https://pre-onboarding-selection-task.shop/)
+
+## 스펙
+
+## 1) Auth
+
+---
+
+## 1-1) SignUp
+
+### 요청
+
+- URL: `/auth/signup`
+- Method: `POST`
+- Headers:
+  - Content-Type: `application/json`
+- Body:
+  - email: string
+  - password: string
+
+### 응답 예시
+
+- status: 201 Created
+- body: 없음
+
+## 1-2) SignIn
+
+### 요청
+
+- URL: `/auth/signin`
+- Method: `POST`
+- Headers:
+  - Content-Type: `application/json`
+- Body:
+  - email: string
+  - password: string
+
+### 응답 예시
+
+- status: 200 OK
+- body
+  ```json
+  {
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjo0LCJpYXQiOjE2NTk5MDQyMTUsImV4cCI6MTY2MDUwOTAxNX0.DyUCCsIGxIl8i_sGFCa3uQcyEDb9dChjbl40h3JWJNc"
+  }
+  ```
+
+## 2) Todo
+
+## 2-1) createTodo
+
+### 요청
+
+- URL: `/todos`
+- Method: `POST`
+- Headers:
+  - Authorization: `Bearer access_token`
+  - Content-Type: `application/json`
+- Body:
+  - todo: string
+
+### 응답 예시
+
+- status: 201 Created
+- body
+  ```json
+  {
+    "id": 1,
+    "todo": "과제하기",
+    "isCompleted": false,
+    "userId": 1
+  }
+  ```
+
+## 2-2) getTodos
+
+### 요청
+
+- URL: `/todos`
+- Method: `GET`
+- Headers:
+  - Authorization: `Bearer access_token`
+
+### 응답 예시
+
+- status: 200 OK
+- body
+  ```json
+  [
+    {
+      "id": 1,
+      "todo": "todo2",
+      "isCompleted": false,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "todo": "todo3",
+      "isCompleted": false,
+      "userId": 1
+    }
+  ]
+  ```
+
+## 2-3) updateTodo
+
+### 요청
+
+- URL: `/todos/:id`
+- Method: `PUT`
+- Headers:
+  - Authorization: `Bearer access_token`
+  - Content-Type: `application/json`
+- Body:
+  - todo: string
+  - isCompleted: boolean
+
+### 응답 예시
+
+- status: 200 OK
+- body
+  ```json
+  {
+    "id": 1,
+    "todo": "Hello World",
+    "isCompleted": true,
+    "userId": 2
+  }
+  ```
+
+## 2-4) deleteTodo
+
+### 요청
+
+- URL: `/todos/:id`
+- Method: `DELETE`
+- Headers:
+  - Authorization: `Bearer access_token`
+
+### 응답 예시
+
+- status: 204 No Content
+- body: 없음
+
+## 로컬 서버 구동
+
+- 배포된 API에 문제가 있는 경우 활용할 수 있는 로컬 서버 구동법입니다.
+- 로컬 서버는 sqlite에 의존성이 있습니다.
+
+### 설치 및 실행
+
+```zsh
+$ npm install
+$ npm start
+```
+
+- 위 순서대로 실행하면 localhost:8000 포트에 서버가 실행됩니다.
+- 서버를 실행하면 db.sqlite 파일이 생성되며 해당 파일을 삭제 시 기존의 데이터는 초기화 됩니다.
+- 그 외 스펙은 배포된 API와 동일합니다.
 
 </details>
