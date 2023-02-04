@@ -10,7 +10,7 @@ function deleteTodo(id: number): Promise<AxiosResponse> {
     const axios = customAxios();
     const access_token = localStorage.getItem("access_token");
     return axios({
-        method: "delete",
+        method: "DELETE",
         url: `/todos/${id}`,
         headers: {
             Authorization: `Bearer ${access_token}`

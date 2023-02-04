@@ -1,10 +1,13 @@
 import { css } from '@emotion/react';
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import GreyBackgroundWrapper from '../../components/common/GreyBackgroundWrapper';
 import TodoContext from '../../store/TodoContext';
 import NewTodoForm from './NewTodoForm';
 import createTodo from '../../utils/apis/Todo/createTodo';
 import Todo from '../../types/Todo';
+import fetchTodos from '../../utils/apis/Todo/fetchTodos';
+import TodoList from './TodoList';
+import deleteTodo from '../../utils/apis/Todo/deleteTodo';
 
 /**
  * /todo
@@ -14,6 +17,15 @@ import Todo from '../../types/Todo';
 function Index() {
     const [newTodo, setNewTodo] = useState<string>("");
     const [todoList, setTodoList] = useState<Todo[]>([]);
+
+    useEffect(() => {
+        fetchTodos()
+            .then((todos) => {
+                setTodoList(todos);
+            })
+    }, []);
+
+
     const onChangeNewTodo = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setNewTodo(e.target.value);
     }, []);
@@ -27,35 +39,50 @@ function Index() {
             })
     }, [newTodo, todoList]);
 
+    const deleteTodoHandler = useCallback((id: number) => {
+        deleteTodo(id)
+            .then((response) => {
+                if (response.status === 204) {
+                    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+                }
+            })
+    }, []);
+
 
     return (
-        <main css={style}>
-            <TodoContext.Provider value={{
-                newTodo: {
-                    value: newTodo,
-                    onChange: onChangeNewTodo,
-                    onSubmit: addTodoHandler,
-                }
-            }}>
-                <GreyBackgroundWrapper
-                    className={'wrapper-center content'}
-                >
+        <TodoContext.Provider value={{
+            newTodo: {
+                value: newTodo,
+                onChange: onChangeNewTodo,
+                onSubmit: addTodoHandler,
+            },
+            todos: {
+                todoList,
+                onDelete: deleteTodoHandler,
+            }
+        }}>
+            <GreyBackgroundWrapper
+                css={style}
+                className={'wrapper-center content'}
+            >
+                <main>
                     <h1>TodoList</h1>
                     <NewTodoForm />
-                </GreyBackgroundWrapper>
-            </TodoContext.Provider>
-
-        </main>
+                    <TodoList />
+                </main>
+            </GreyBackgroundWrapper>
+        </TodoContext.Provider>
     )
 }
 
-const style = css`
-    width: 100%;
-    display: flex;
-    .content {
-        padding: 1rem;
-        flex-direction: column;
+const style = css`  
+    main {
+        min-width: 768px;
     }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     h1 {
         font-size: 2rem;
         font-weight: 800;
@@ -67,6 +94,14 @@ const style = css`
         text-align: center;
         margin-left: 0.5rem;
         border-radius: 4px;
+    }
+
+    @media screen and (max-width: 767px){
+        main {
+            padding: 1rem;
+            min-width: unset;
+            width: 100%;
+        }
     }
 `
 

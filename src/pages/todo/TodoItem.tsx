@@ -1,9 +1,12 @@
 import { css } from '@emotion/react';
-import React from 'react'
+import React, { useContext } from 'react'
 import Todo from '../../types/Todo';
 import Button from '../../components/common/Button';
+import TodoContext from '../../store/TodoContext';
 
 function TodoItem(props: Todo) {
+    const { todos } = useContext(TodoContext);
+    const { onDelete } = todos;
     return (
         <li css={style}>
             <label>
@@ -19,6 +22,7 @@ function TodoItem(props: Todo) {
             <Button
                 type="button"
                 testId="delete-button"
+                onClick={() => onDelete(props.id)}
             >
                 삭제
             </Button>
