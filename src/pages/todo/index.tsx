@@ -9,7 +9,8 @@ import fetchTodos from '../../utils/apis/Todo/fetchTodos';
 import TodoList from './TodoList';
 import deleteTodo from '../../utils/apis/Todo/deleteTodo';
 import updateTodo from '../../utils/apis/Todo/updateTodo';
-
+import Error from '../../components/common/Error';
+import ErrorResponse from '../../types/ErrorResponse';
 /**
  * /todo
  * todo 컴포넌트
@@ -18,7 +19,7 @@ import updateTodo from '../../utils/apis/Todo/updateTodo';
 function Index() {
     const [newTodo, setNewTodo] = useState<string>("");
     const [todoList, setTodoList] = useState<Todo[]>([]);
-
+    const [error, setError] = useState<string>("");
     useEffect(() => {
         fetchTodos()
             .then((todos) => {
@@ -37,7 +38,12 @@ function Index() {
             .then((todo) => {
                 setTodoList([...todoList, todo]);
                 setNewTodo("");
+                setError("");
             })
+            .catch(({ response }) => {
+                const { data }: { data: ErrorResponse } = response;
+                setError(data.message);
+            });
     }, [newTodo, todoList]);
 
     const deleteTodoHandler = useCallback((id: number) => {
@@ -78,6 +84,10 @@ function Index() {
                 <main>
                     <h1>TodoList</h1>
                     <NewTodoForm />
+                    <Error
+                        className='error'
+                        value={error}
+                    />
                     <TodoList />
                 </main>
             </GreyBackgroundWrapper>
@@ -88,6 +98,9 @@ function Index() {
 const style = css`  
     main {
         min-width: 768px;
+        .error {
+            margin-top: 0.5rem;
+        }
     }
     display: flex;
     flex-direction: column;
