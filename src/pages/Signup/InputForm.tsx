@@ -4,15 +4,8 @@ import Button from "../../components/common/Button";
 import LabelInput from "../../components/common/LabelInput";
 import { SignupContext } from "../../store/SignupContext";
 import SignSubmitButtonStyle from "../../style/SignSubmitButtonStyle";
-import BaseProps from "../../types/BaseProps";
-import InputProps from "../../types/InputProps";
 import Error from "../../components/common/Error";
-
-interface inputsType {
-    label: string;
-    input: InputProps & BaseProps
-    error: string;
-}
+import InputType from "../../types/InputType";
 
 /**
  * 회원가입 입력 폼 컴포넌트
@@ -21,7 +14,7 @@ interface inputsType {
  */
 function InputForm() {
     const { values, onChange, onSubmit, errors } = React.useContext(SignupContext);
-    const inputs: inputsType[] = useMemo(() =>
+    const inputs: InputType[] = useMemo(() =>
         [
             {
                 label: "이메일",
