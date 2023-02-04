@@ -7,6 +7,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Todo from "./pages/todo";
 import PrivateRoute from './components/permission/PrivateRoute';
+import GuestRoute from "./components/permission/GuestRoute";
 
 
 
@@ -16,8 +17,8 @@ function App() {
             <GlobalStyle />
             <BrowserRouter>
                 <Routes>
-                    <Route path="/signin" element={<Signin />} />
-                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/signin" element={<GuestRoute RouteComponent={Signin} />} />
+                    <Route path="/signup" element={<GuestRoute RouteComponent={Signup} />} />
                     <Route path="/todo" element={<PrivateRoute RouteComponent={Todo} />} />
                 </Routes>
             </BrowserRouter>
