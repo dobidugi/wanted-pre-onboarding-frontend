@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import GreyBackgroundWrapper from "../../components/common/GreyBackgroundWrapper";
 import SignWrapper from "../../components/common/SignWrapper";
 import InputForm from "./InputForm";
-import SignupValues from "../../types/SignupValues";
+import User from "../../types/User";
 import { SignupContext } from "../../store/SignupContext";
 
 /**
@@ -11,7 +11,7 @@ import { SignupContext } from "../../store/SignupContext";
  * @returns 
  */
 function Index() {
-    const [values, setValues] = useState<SignupValues>({
+    const [values, setValues] = useState<User>({
         email: '',
         password: '',
     });
@@ -26,7 +26,8 @@ function Index() {
 
     const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    }, []);
+        console.log(values);
+    }, [values]);
 
     return (
         <main>
