@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import GlobalStyle from "./style/GlobalStyle";
 import { css } from "@emotion/react";
 
@@ -17,6 +17,7 @@ function App() {
             <GlobalStyle />
             <BrowserRouter>
                 <Routes>
+                    <Route path="/" element={<Navigate to={"/todo"} />} />
                     <Route path="/signin" element={<GuestRoute RouteComponent={Signin} />} />
                     <Route path="/signup" element={<GuestRoute RouteComponent={Signup} />} />
                     <Route path="/todo" element={<PrivateRoute RouteComponent={Todo} />} />
