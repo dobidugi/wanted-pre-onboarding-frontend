@@ -8,6 +8,7 @@ import Todo from '../../types/Todo';
 import fetchTodos from '../../utils/apis/Todo/fetchTodos';
 import TodoList from './TodoList';
 import deleteTodo from '../../utils/apis/Todo/deleteTodo';
+import updateTodo from '../../utils/apis/Todo/updateTodo';
 
 /**
  * /todo
@@ -48,6 +49,14 @@ function Index() {
             })
     }, []);
 
+    const updateTodoHandler = useCallback((newTodo: Todo) => {
+        updateTodo(newTodo)
+            .then((response) => {
+                if (response.status === 200) {
+                    setTodoList((prev) => prev.map((todo) => todo.id === newTodo.id ? newTodo : todo));
+                }
+            })
+    }, []);
 
     return (
         <TodoContext.Provider value={{
@@ -59,6 +68,7 @@ function Index() {
             todos: {
                 todoList,
                 onDelete: deleteTodoHandler,
+                onUpdate: updateTodoHandler,
             }
         }}>
             <GreyBackgroundWrapper

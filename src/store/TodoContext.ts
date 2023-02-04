@@ -10,6 +10,7 @@ const TodoContext = createContext<TodoContextProps>({
     todos: {
         todoList: [],
         onDelete: () => {},
+        onUpdate: () => {}
     }
 });
 

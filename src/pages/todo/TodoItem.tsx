@@ -1,16 +1,28 @@
 import { css } from '@emotion/react';
-import React, { useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import Todo from '../../types/Todo';
 import Button from '../../components/common/Button';
 import TodoContext from '../../store/TodoContext';
 
 function TodoItem(props: Todo) {
     const { todos } = useContext(TodoContext);
-    const { onDelete } = todos;
+    const { onDelete, onUpdate } = todos;
+    // const [isEditMode, setIsEditMode] = useState<boolean>(false);
+    const onClickCheckBox = useCallback((id: number) => {
+        const newTodo: Todo = {
+            ...props,
+            isCompleted: !props.isCompleted
+        }
+        onUpdate(newTodo);
+    }, [onUpdate, props]);
     return (
         <li css={style}>
             <label>
-                <input type="checkbox" checked={props.isCompleted} />
+                <input
+                    type="checkbox"
+                    defaultChecked={props.isCompleted}
+                    onClick={() => onClickCheckBox(props.id)}
+                />
                 <span>{props.todo}</span>
             </label>
             <Button
@@ -46,6 +58,10 @@ const style = css`
         span {
             font-size: 1rem;
             margin-left: 0.5rem;
+        }
+
+        input {
+            cursor: pointer;
         }
     }
     button {
