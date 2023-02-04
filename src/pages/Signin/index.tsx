@@ -34,13 +34,14 @@ function Index() {
         e.preventDefault();
         signinRequest(values)
             .then((response: { access_token: string }) => {
-                console.log(response.access_token);
+                localStorage.setItem('access_token', response.access_token);
+                navigator('/todo');
             })
             .catch(({ response }) => {
                 const { data }: { data: ErrorResponse } = response
                 setFailMessage(data.message);
             });
-    }, [values]);
+    }, [navigator, values]);
 
     return (
         <main css={
