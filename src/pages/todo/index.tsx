@@ -84,6 +84,7 @@ function Index() {
             <GreyBackgroundWrapper
                 css={style}
                 className={'wrapper-center content'}
+
             >
                 <main>
                     <h1>TodoList</h1>
@@ -102,13 +103,12 @@ function Index() {
 const style = css`  
     main {
         min-width: 768px;
+        margin-top: 1rem;
         .error {
             margin-top: 0.5rem;
         }
     }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    
     
     h1 {
         font-size: 2rem;
@@ -122,6 +122,11 @@ const style = css`
         margin-left: 0.5rem;
         border-radius: 4px;
     }
+
+    /* @media screen and (min-width: 768px){
+        justify-content: flex-start;
+        align-items: flex-start
+    } */
 
     @media screen and (max-width: 767px){
         main {

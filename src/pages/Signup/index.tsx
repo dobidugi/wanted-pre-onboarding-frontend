@@ -8,6 +8,7 @@ import UserValidator from "../../utils/validator/UserValidator";
 import User from "../../types/User";
 import signupRequest from '../../utils/apis/Signup/signupRequest';
 import { useNavigate } from "react-router-dom";
+import ContentResponsiveStyle from '../../style/ContentResponsiveStyle';
 
 /**
  * /signup
@@ -34,19 +35,22 @@ function Index() {
     }, [navigator, values]);
 
     return (
-        <main>
-            <SignupContext.Provider value={{ values, onChange, onSubmit, errors }}>
-                <GreyBackgroundWrapper
-                    className='wrapper-center'
-                >
+
+        <SignupContext.Provider value={{ values, onChange, onSubmit, errors }}>
+            <GreyBackgroundWrapper
+                className='wrapper-center'
+                css={ContentResponsiveStyle}
+            >
+                <main>
                     <SignWrapper
                         type="회원가입"
                     >
                         <InputForm />
                     </SignWrapper>
-                </GreyBackgroundWrapper>
-            </SignupContext.Provider>
-        </main>
+                </main>
+            </GreyBackgroundWrapper>
+        </SignupContext.Provider>
+
     );
 }
 

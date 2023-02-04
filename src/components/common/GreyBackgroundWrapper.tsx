@@ -20,6 +20,7 @@ function GreyBackgroundWrapper(props: { children: React.ReactNode } & BaseProps)
 }
 const style = css`
     width: 100%;
+    height: 100vh;
     background-color: var(--grey-100);
 `
 

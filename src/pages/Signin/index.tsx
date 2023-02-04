@@ -13,6 +13,7 @@ import ErrorResponse from '../../types/ErrorResponse';
 import Error from '../../components/common/Error';
 import { error } from 'console';
 import { css } from '@emotion/react';
+import ContentResponsiveStyle from '../../style/ContentResponsiveStyle';
 
 /**
  * /signin
@@ -44,15 +45,15 @@ function Index() {
     }, [navigator, values]);
 
     return (
-        <main css={
-            css`
+
+        <SigninContext.Provider value={{ values, onChange, onSubmit, errors }}>
+            <GreyBackgroundWrapper
+                className='wrapper-center'
+                css={ContentResponsiveStyle}
+            >
+                <main css={css`
                 .request-error { margin-top: 1rem;}  
-            `
-        }>
-            <SigninContext.Provider value={{ values, onChange, onSubmit, errors }}>
-                <GreyBackgroundWrapper
-                    className='wrapper-center'
-                >
+                `}>
                     <SignWrapper
                         type="로그인"
                     >
@@ -62,10 +63,9 @@ function Index() {
                             value={failMessage}
                         />
                     </SignWrapper>
-                </GreyBackgroundWrapper>
-            </SigninContext.Provider>
-        </main>
-
+                </main>
+            </GreyBackgroundWrapper>
+        </SigninContext.Provider>
     )
 }
 
