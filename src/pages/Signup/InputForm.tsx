@@ -6,6 +6,7 @@ import { SignupContext } from "../../store/SignupContext";
 import SignSubmitButtonStyle from "../../style/SignSubmitButtonStyle";
 import BaseProps from "../../types/BaseProps";
 import InputProps from "../../types/InputProps";
+import Error from "../../components/common/Error";
 
 interface inputsType {
     label: string;
@@ -42,14 +43,15 @@ function InputForm() {
                     value: values.password,
                     onChange: onChange,
                 },
-                error: errors.email
+                error: errors.password
             },
         ]
-        , [errors.email, onChange, values.email, values.password]);
+        , [errors.email, errors.password, onChange, values.email, values.password]);
 
-    const isAllValid = useCallback(() => {
-        return inputs.filter(error => error.error !== '').length === 0;
-    }, [inputs])
+    const isInvalidValues = useCallback(() => {
+        if (values.email === "" || values.password === "") return true;
+        if (errors.email !== "" || errors.password !== "") return true;
+    }, [errors, values.email, values.password])
 
     return (
         <form
@@ -57,26 +59,33 @@ function InputForm() {
             css={style}
         >
             {inputs.map((input, index) => (
-                <LabelInput
-                    key={index}
-                    label={input.label}
-                    input={input.input}
-                />
-            ))}
+                <div className="item">
+                    <LabelInput
+                        key={index}
+                        label={input.label}
+                        input={input.input}
+                    />
+                    <Error
+                        value={input.error}
+                    />
+                </div>
+            ))
+            }
             <Button
                 type="submit"
                 testId="signup-button"
                 css={SignSubmitButtonStyle}
-                isDisabled={!isAllValid()}
+                isDisabled={isInvalidValues()}
             >
                 회원 가입
             </Button>
-        </form>
+        </form >
     );
 }
 
 const style = css`
     width: 100%;
+    
 `;
 
 export default InputForm;
