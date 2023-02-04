@@ -9,7 +9,7 @@
 interface Todo {
     id: 1,
     todo: string,
-    isCompleted: false,
+    isCompleted: boolean,
     userId: number
 }
 
