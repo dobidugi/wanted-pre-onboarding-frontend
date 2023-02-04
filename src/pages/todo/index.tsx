@@ -61,7 +61,11 @@ function Index() {
                 if (response.status === 200) {
                     setTodoList((prev) => prev.map((todo) => todo.id === newTodo.id ? newTodo : todo));
                 }
-            })
+                setError("");
+            }).catch(({ response }) => {
+                const { data }: { data: ErrorResponse } = response;
+                setError(data.message);
+            });
     }, []);
 
     return (
