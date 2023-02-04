@@ -6,6 +6,8 @@ import { SignupContext } from "../../store/SignupContext";
 import useValid from "../../hooks/useValid";
 import UserValidator from "../../utils/validator/UserValidator";
 import User from "../../types/User";
+import signupRequest from '../../utils/apis/Signup/signupRequest';
+import { useNavigate } from "react-router-dom";
 
 /**
  * /signup
@@ -13,6 +15,7 @@ import User from "../../types/User";
  * @returns 
  */
 function Index() {
+    const navigator = useNavigate();
     const { values, errors, onChange } = useValid<User>({
         values: {
             email: '',
@@ -20,14 +23,15 @@ function Index() {
         },
         validator: UserValidator
     })
-    // const [values, setValues] = useState<User>();
-
 
 
     const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(values);
-    }, [values]);
+        signupRequest(values)
+            .then((response) => {
+                navigator('/signin');
+            })
+    }, [navigator, values]);
 
     return (
         <main>
