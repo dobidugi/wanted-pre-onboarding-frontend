@@ -163,13 +163,10 @@ const style = css`
         --orange-600: #FB8C00;
         --coral: #ff5268;
         --red-400: #fc2b38;
-        --minus-margin-android: 0px -16px;
-        --minus-margin-ios: 0px -24px;
-        --minus-margin-undefined: 0px -24px;
-        --padding-android: 0px 16px;
-        --padding-ios: 0px 24px;
-        --padding-undefined: 0px 24px;
-        --main-padding: 0px 48px;
+        --blue-100: #BBDEFB;
+        --blue-200: #90CAF9;
+        --blue-300: #64B5F6;
+
     }
     .notosanskr * {
         font-family: 'Noto Sans KR', sans-serif;
